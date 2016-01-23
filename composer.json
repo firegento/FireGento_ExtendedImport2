@@ -1,0 +1,14 @@
+{
+    "name": "firegento/extendedimport",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Extended Import Features (ported from AvS_FastSimpleImport)",
+    "require": {
+    },
+    "authors":[
+        {
+            "name":"Magento Hackathon",
+            "email":"Add your email address here"
+        }
+    ]
+}
