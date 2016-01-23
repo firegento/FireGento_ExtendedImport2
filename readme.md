@@ -22,11 +22,16 @@ Compatibility
 
 Installation Instructions
 -------------------------
-1. ...
+1. create a directory `app/code/FireGento/ExtendedImport`
+2. extract all files of the module there
+3. enable the module with
+
+        bin/magento module:enable FireGento/ExtendedImport
+        bin/magento setup:upgrade
 
 Uninstallation
 --------------
-1. ...
+1. remove the directory `app/code/FireGento/ExtendedImport`
 
 Support
 -------
@@ -36,10 +41,17 @@ Contribution
 ------------
 Any contribution is highly appreciated. The best way to contribute code is to open a [pull request on GitHub](https://help.github.com/articles/using-pull-requests).
 
+Tests
+-----
+Unit tests are integrated in the Magento unit test suite. To run them separately, simply call
+
+    phpunit
+    
+in the module directory (it must be installed in a Magento instance to use the bootstrap file)
+
 Developer
 ---------
 Fabian Schmengler
-[http://www.firstname-lastname.com](http://www.firstname-lastname.com)
 [@fschmengler](https://twitter.com/fschmengler)
 
 Licence
