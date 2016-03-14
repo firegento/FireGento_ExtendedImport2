@@ -1,14 +1,24 @@
 {
     "name": "firegento/extendedimport",
     "license": "OSL-3.0",
-    "type": "magento-module",
+    "type": "magento2-module",
     "description": "Extended Import Features (ported from AvS_FastSimpleImport)",
     "require": {
+        "php": "~5.5.0|~5.6.0|~7.0.0"
     },
+
     "authors":[
         {
             "name":"Fabian Schmengler",
             "email":"fs@integer-net.de"
         }
-    ]
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "FireGento\\ExtendedImport\\": ""
+        }
+    }
 }
