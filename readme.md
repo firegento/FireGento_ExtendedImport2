@@ -20,13 +20,21 @@ Compatibility
 -------------
 - Magento >= 2.0
 
-Installation Instructions
--------------------------
+Installation Instructions "Manual" Installation
+---------------------------------------------
 1. create a directory `app/code/FireGento/ExtendedImport`
 2. extract all files of the module there
 3. enable the module with
 
         bin/magento module:enable FireGento/ExtendedImport
+        bin/magento setup:upgrade
+        
+Installation Instructions with Composer
+---------------------------------------------
+
+        composer config repositories.firegento_extendedimport2 vcs https://github.com/firegento/FireGento_ExtendedImport2
+        composer require firegento/extendedimport dev-master
+        bin/magento module:enable FireGento_ExtendedImport
         bin/magento setup:upgrade
 
 Uninstallation
