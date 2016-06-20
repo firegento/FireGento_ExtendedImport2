@@ -28,6 +28,7 @@ class CreateMissingAttributeOptionPlugin
     )
     {
 
+
         $this->optionDataFactory = $optionDataFactory;
         $this->attributeOptionManagementInterface = $attributeOptionManagementInterface;
     }
@@ -43,7 +44,7 @@ class CreateMissingAttributeOptionPlugin
 
             foreach ($values as $value) {
                 $optionName = strtolower($value);
-                if (!isset($attrParams['options'][$optionName])) {
+                if (!isset($attrParams['options'][$optionName]) && strlen($optionName)) {
                     $option = $this->createAttributeOption($attrCode, $value);
 
                     $attrParams['options'][$optionName] = $option->getValue();
