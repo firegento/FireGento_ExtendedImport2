@@ -7,10 +7,10 @@
         "php": "~5.5.0|~5.6.0|~7.0.0"
     },
 
-    "authors":[
+    "authors": [
         {
-            "name":"Fabian Schmengler",
-            "email":"fs@integer-net.de"
+            "name": "Fabian Schmengler",
+            "email": "fs@integer-net.de"
         }
     ],
     "autoload": {
