@@ -12,9 +12,15 @@ Description
 -----------
 Adds missing features to Magento CSV import, to be used with FastSimpleImport
 
+Features
+-----------
+1. Add missing product-attribute-options on the fly
+2. Allow using category-ids on product import instead of category-path
+
+
 Requirements
 ------------
-- ...
+- None
 
 Compatibility
 -------------
