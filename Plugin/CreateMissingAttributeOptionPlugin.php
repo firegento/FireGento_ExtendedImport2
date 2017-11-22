@@ -5,9 +5,12 @@ use Magento\Catalog\Api\ProductAttributeOptionManagementInterface;
 use Magento\CatalogImportExport\Model\Import\Product;
 use Magento\CatalogImportExport\Model\Import\Product\Validator;
 use Magento\Eav\Api\Data\AttributeOptionInterfaceFactory;
+use Magento\Eav\Model\Config as EavConfig;
+use Migration\Exception;
 
 class CreateMissingAttributeOptionPlugin
 {
+    protected $eavConfig;
     /**
      * @var AttributeOptionInterfaceFactory
      */
@@ -21,14 +24,15 @@ class CreateMissingAttributeOptionPlugin
      * CreateMissingAttributeOptionPlugin constructor.
      * @param ProductAttributeOptionManagementInterface $attributeOptionManagementInterface
      * @param AttributeOptionInterfaceFactory $optionDataFactory
+     * @param EavConfig $eavConfig
      */
     public function __construct(
         ProductAttributeOptionManagementInterface $attributeOptionManagementInterface,
-        AttributeOptionInterfaceFactory $optionDataFactory
+        AttributeOptionInterfaceFactory $optionDataFactory,
+        EavConfig $eavConfig
     )
     {
-
-
+        $this->eavConfig = $eavConfig;
         $this->optionDataFactory = $optionDataFactory;
         $this->attributeOptionManagementInterface = $attributeOptionManagementInterface;
     }
@@ -74,8 +78,17 @@ class CreateMissingAttributeOptionPlugin
         if (!$option) {
             $option = $this->optionDataFactory->create();
             $option->setLabel($label);
-            $this->attributeOptionManagementInterface->add($attributeCode, $option);
+
+            $result = $this->attributeOptionManagementInterface->add($attributeCode, $option);
+            if (!$result) {
+                die('Could not add ' . $label . ' to ' . $attributeCode);
+            }
+            // Clear attribute cache to make the new option available immediately
+            $this->eavConfig->clear();
             $option = $this->findAttributeOptionByLabel($attributeCode, $label);
+        }
+        if (!$option) {
+            die('Could not find ' . $label . ' in ' . $attributeCode);
         }
         return $option;
     }
