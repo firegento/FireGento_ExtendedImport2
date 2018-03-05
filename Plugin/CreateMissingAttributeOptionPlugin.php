@@ -40,24 +40,27 @@ class CreateMissingAttributeOptionPlugin
 
     public function beforeIsAttributeValid(Validator $subject, $attrCode, array $attrParams, array $rowData)
     {
+        if ($attrParams['type'] != "multiselect" && $attrParams['type'] != "select") {
+            return array($attrCode, $attrParams, $rowData);
+        }
 
+        $attribute = $this->eavConfig->getAttribute('catalog_product', $attrCode);
+        if ($attribute->getSourceModel() != 'Magento\Eav\Model\Entity\Attribute\Source\Table') {
+            return array($attrCode, $attrParams, $rowData);
+        }
 
-        if ($attrParams['type'] == "multiselect" || $attrParams['type'] == "select") {
+        $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
 
-            $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
+        foreach ($values as $value) {
+            $optionName = strtolower($value);
+            if (!isset($attrParams['options'][$optionName]) && strlen($optionName)) {
+                $option = $this->createAttributeOption($attrCode, $value);
 
-            foreach ($values as $value) {
-                $optionName = strtolower($value);
-                if (!isset($attrParams['options'][$optionName]) && strlen($optionName)) {
-                    $option = $this->createAttributeOption($attrCode, $value);
+                $attrParams['options'][$optionName] = $option->getValue();
+                // Delete Common Attributes Cache, for forcing reloading the Values
+                \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = array();
 
-                    $attrParams['options'][$optionName] = $option->getValue();
-                    // Delete Common Attributes Cache, for forcing reloading the Values
-                    \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = array();
-                    
-                }
             }
-
         }
 
         return array($attrCode, $attrParams, $rowData);
