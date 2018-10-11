@@ -9,9 +9,12 @@
                 disabled="false"/>
     </type>
 
+    <type name="Magento\ImportExport\Model\Import\Config">
+        <plugin name="firegento_extendedimport_override_url_key_validation" type="FireGento\ExtendedImport\Plugin\AfterGetEntities"/>
+    </type>
+
+
     <preference for="Magento\CatalogImportExport\Model\Import\Product\CategoryProcessor"
                 type="FireGento\ExtendedImport\Model\Magento\CatalogImportExport\Import\Product\CategoryProcessor"
     />
-
-
 </config>
