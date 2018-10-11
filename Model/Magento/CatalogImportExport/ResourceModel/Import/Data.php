@@ -30,16 +30,13 @@ class Data extends \Magento\ImportExport\Model\ResourceModel\Import\Data
     {
         $urlKeys = array_column($rows, Product::URL_KEY);
         $occurrences = array_count_values($urlKeys);
-        $occurrencesIndex = [];
 
         foreach ($urlKeys as $rowIndex => $urlKey) {
             if ($occurrences[$urlKey] === 1) {
                 continue;
             }
 
-            $key = isset($occurrencesIndex[$urlKey]) ? (int) $occurrencesIndex[$urlKey] + 1 : 1;
-            $occurrencesIndex[$urlKey] = $key;
-
+            $key = $rows[$rowIndex][Product::COL_SKU];
             $rows[$rowIndex][Product::URL_KEY] = $urlKey.'-'.$key;
         }
 
