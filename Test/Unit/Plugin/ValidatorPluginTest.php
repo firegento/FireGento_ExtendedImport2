@@ -67,8 +67,7 @@ class ValidatorPluginTest extends TestCase
         $inputRowData,
         $inputMessages,
         $expectedMessages
-    )
-    {
+    ) {
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValid = function () {
             return false;
@@ -99,8 +98,7 @@ class ValidatorPluginTest extends TestCase
         $inputRowData,
         $inputMessages,
         $expectedMessages
-    )
-    {
+    ) {
         $noMessages = [];
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValidFalse = function () {
