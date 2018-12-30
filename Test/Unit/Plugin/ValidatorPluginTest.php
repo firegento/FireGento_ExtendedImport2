@@ -1,11 +1,13 @@
 <?php
+
 namespace FireGento\ExtendedImport\Test\Unit\Plugin;
 
 use FireGento\ExtendedImport\Plugin\ValidatorPlugin;
 use Magento\CatalogImportExport\Model\Import\Product\RowValidatorInterface;
 use Magento\Framework\Validator\ValidatorInterface;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
+class ValidatorPluginTest extends TestCase
 {
     /**
      * @var ValidatorPlugin
@@ -15,15 +17,18 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
      * @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     private $validatorStub;
+
     protected function setUp()
     {
         $this->pluginUnderTest = new ValidatorPlugin();
         $this->validatorStub = $this->getMockForAbstractClass(ValidatorInterface::class);
     }
+
     private function stubGetMessages($messages)
     {
         $this->validatorStub->expects($this->any())->method('getMessages')->willReturn($messages);
     }
+
     /**
      * @test
      * @dataProvider dataInvalidInput
@@ -51,6 +56,7 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
             'Messsages should still be empty'
         );
     }
+
     /**
      * @test
      * @dataProvider dataInvalidInput
@@ -61,7 +67,8 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
         $inputRowData,
         $inputMessages,
         $expectedMessages
-    ) {
+    )
+    {
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValid = function () {
             return false;
@@ -92,7 +99,8 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
         $inputRowData,
         $inputMessages,
         $expectedMessages
-    ) {
+    )
+    {
         $noMessages = [];
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValidFalse = function () {
@@ -173,7 +181,7 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
                     RowValidatorInterface::ERROR_INVALID_ATTRIBUTE_TYPE,
                     '[SKU Test] Decimal value for attribute "msrp" expected. Your input: "seven"']
             ],
-            'unknown error' =>  [
+            'unknown error' => [
                 'attrCode' => 'msrp',
                 'attrParams' => ['code' => 'msrp', 'type' => 'decimal', 'default_value' => null, 'is_required' => '0'],
                 'rowData' => ['sku' => 'Test', 'msrp' => '1.0'],
