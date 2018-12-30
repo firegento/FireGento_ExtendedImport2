@@ -20,15 +20,25 @@ class ValidatorPlugin
         $this->clearAdditionalMessages();
         return [$value];
     }
-    public function aroundIsAttributeValid(ValidatorInterface $subject, \Closure $proceed, $attrCode, array $attrParams, array $rowData)
-    {
+    public function aroundIsAttributeValid(
+        ValidatorInterface $subject,
+        \Closure $proceed,
+        $attrCode,
+        array $attrParams,
+        array $rowData
+    ) {
         $result = $proceed($attrCode, $attrParams, $rowData);
         if ($result === false) {
             $messages = (array)$subject->getMessages();
             switch (end($messages)) {
                 case RowValidatorInterface::ERROR_INVALID_ATTRIBUTE_TYPE:
-                    $this->addAdditionalMessage(sprintf('[SKU %s] %s value for attribute "%s" expected. Your input: "%s"',
-                        $rowData['sku'], ucfirst($attrParams['type']), $attrCode, $rowData[$attrCode]));
+                    $this->addAdditionalMessage(sprintf(
+                        '[SKU %s] %s value for attribute "%s" expected. Your input: "%s"',
+                        $rowData['sku'],
+                        ucfirst($attrParams['type']),
+                        $attrCode,
+                        $rowData[$attrCode]
+                    ));
                     break;
             }
         }

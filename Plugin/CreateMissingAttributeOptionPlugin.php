@@ -42,6 +42,7 @@ class CreateMissingAttributeOptionPlugin
         }
 
         $attribute = $this->eavConfig->getAttribute('catalog_product', $attrCode);
+        // phpcs:ignore
         if ($attribute->getSourceModel() != 'Magento\Eav\Model\Entity\Attribute\Source\Table') {
             return [$attrCode, $attrParams, $rowData];
         }

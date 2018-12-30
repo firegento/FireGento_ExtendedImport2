@@ -35,27 +35,48 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
         $stubIsAttributeValid = function () {
             return true;
         };
-        $this->assertTrue($this->pluginUnderTest->aroundIsAttributeValid($this->validatorStub, $stubIsAttributeValid,
-            $inputAttrCode, $inputAttrParams, $inputRowData),
-            'Result "true" should be passed through');
-        $this->assertEquals($noMessages, $this->pluginUnderTest->afterGetMessages($this->validatorStub, $noMessages),
-            'Messsages should still be empty');
+        $this->assertTrue(
+            $this->pluginUnderTest->aroundIsAttributeValid(
+                $this->validatorStub,
+                $stubIsAttributeValid,
+                $inputAttrCode,
+                $inputAttrParams,
+                $inputRowData
+            ),
+            'Result "true" should be passed through'
+        );
+        $this->assertEquals(
+            $noMessages,
+            $this->pluginUnderTest->afterGetMessages($this->validatorStub, $noMessages),
+            'Messsages should still be empty'
+        );
     }
     /**
      * @test
      * @dataProvider dataInvalidInput
      */
-    public function shouldAddMessages($inputAttrCode, $inputAttrParams, $inputRowData, $inputMessages, $expectedMessages)
-    {
+    public function shouldAddMessages(
+        $inputAttrCode,
+        $inputAttrParams,
+        $inputRowData,
+        $inputMessages,
+        $expectedMessages
+    ) {
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValid = function () {
             return false;
         };
 
-        $this->assertFalse($this->pluginUnderTest->aroundIsAttributeValid($this->validatorStub, $stubIsAttributeValid,
-            $inputAttrCode, $inputAttrParams, $inputRowData), 'Result "false" should be passed');
+        $this->assertFalse($this->pluginUnderTest->aroundIsAttributeValid(
+            $this->validatorStub,
+            $stubIsAttributeValid,
+            $inputAttrCode,
+            $inputAttrParams,
+            $inputRowData
+        ), 'Result "false" should be passed');
 
-        $this->assertEquals($expectedMessages,
+        $this->assertEquals(
+            $expectedMessages,
             $this->pluginUnderTest->afterGetMessages($this->validatorStub, $inputMessages),
             'Messages modified by getMessages interceptor'
         );
@@ -65,8 +86,13 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataInvalidInput
      */
-    public function shouldClearMessagesForEachRow($inputAttrCode, $inputAttrParams, $inputRowData, $inputMessages, $expectedMessages)
-    {
+    public function shouldClearMessagesForEachRow(
+        $inputAttrCode,
+        $inputAttrParams,
+        $inputRowData,
+        $inputMessages,
+        $expectedMessages
+    ) {
         $noMessages = [];
         $this->stubGetMessages($inputMessages);
         $stubIsAttributeValidFalse = function () {
@@ -76,21 +102,39 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
             return true;
         };
 
-        $this->assertSame([$inputRowData], $this->pluginUnderTest->beforeIsValid($this->validatorStub, $inputRowData),
-            'No change of input in before interceptor');
-        $this->assertFalse($this->pluginUnderTest->aroundIsAttributeValid($this->validatorStub, $stubIsAttributeValidFalse,
-            $inputAttrCode, $inputAttrParams, $inputRowData), 'Result "false" should be passed');
-        $this->assertEquals($expectedMessages,
+        $this->assertSame(
+            [$inputRowData],
+            $this->pluginUnderTest->beforeIsValid($this->validatorStub, $inputRowData),
+            'No change of input in before interceptor'
+        );
+        $this->assertFalse($this->pluginUnderTest->aroundIsAttributeValid(
+            $this->validatorStub,
+            $stubIsAttributeValidFalse,
+            $inputAttrCode,
+            $inputAttrParams,
+            $inputRowData
+        ), 'Result "false" should be passed');
+        $this->assertEquals(
+            $expectedMessages,
             $this->pluginUnderTest->afterGetMessages($this->validatorStub, $inputMessages),
             'Messages modified by getMessages interceptor'
         );
 
-        $this->assertSame([$inputRowData], $this->pluginUnderTest->beforeIsValid($this->validatorStub, $inputRowData),
-            'No change of input in before interceptor');
+        $this->assertSame(
+            [$inputRowData],
+            $this->pluginUnderTest->beforeIsValid($this->validatorStub, $inputRowData),
+            'No change of input in before interceptor'
+        );
         $differentRowData = array_merge($inputRowData, ['sku' => $inputRowData['sku'] . '2']);
-        $this->assertTrue($this->pluginUnderTest->aroundIsAttributeValid($this->validatorStub, $stubIsAttributeValidTrue,
-            $inputAttrCode, $inputAttrParams, $differentRowData), 'Result "true" should be passed');
-        $this->assertEquals($noMessages,
+        $this->assertTrue($this->pluginUnderTest->aroundIsAttributeValid(
+            $this->validatorStub,
+            $stubIsAttributeValidTrue,
+            $inputAttrCode,
+            $inputAttrParams,
+            $differentRowData
+        ), 'Result "true" should be passed');
+        $this->assertEquals(
+            $noMessages,
             $this->pluginUnderTest->afterGetMessages($this->validatorStub, $noMessages),
             'Messages empty for different sku'
         );
@@ -106,12 +150,19 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
         return [
             'invalid_datetime' => [
                 'attrCode' => 'custom_design_to',
-                'attrParams' => ['code' => 'custom_design_to', 'type' => 'datetime', 'default_value' => null, 'is_required' => '0'],
+                'attrParams' => [
+                    'code' => 'custom_design_to',
+                    'type' => 'datetime',
+                    'default_value' => null,
+                    'is_required' => '0'
+                ],
                 'rowData' => ['sku' => 'Test', 'custom_design_to' => 'I am not a valid date'],
                 'inputMessages' => [RowValidatorInterface::ERROR_INVALID_ATTRIBUTE_TYPE],
                 'expectedMessages' => [
                     RowValidatorInterface::ERROR_INVALID_ATTRIBUTE_TYPE,
-                    '[SKU Test] Datetime value for attribute "custom_design_to" expected. Your input: "I am not a valid date"']
+                    '[SKU Test] Datetime value for attribute "custom_design_to" expected. Your input:'
+                    . ' "I am not a valid date"'
+                ]
             ],
             'invalid_decimal' => [
                 'attrCode' => 'msrp',
