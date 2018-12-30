@@ -32,7 +32,7 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
     {
         $noMessages = [];
         $this->stubGetMessages($noMessages);
-        $stubIsAttributeValid = function() {
+        $stubIsAttributeValid = function () {
             return true;
         };
         $this->assertTrue($this->pluginUnderTest->aroundIsAttributeValid($this->validatorStub, $stubIsAttributeValid,
@@ -48,7 +48,7 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
     public function shouldAddMessages($inputAttrCode, $inputAttrParams, $inputRowData, $inputMessages, $expectedMessages)
     {
         $this->stubGetMessages($inputMessages);
-        $stubIsAttributeValid = function() {
+        $stubIsAttributeValid = function () {
             return false;
         };
 
@@ -69,10 +69,10 @@ class ValidatorPluginTest extends \PHPUnit_Framework_TestCase
     {
         $noMessages = [];
         $this->stubGetMessages($inputMessages);
-        $stubIsAttributeValidFalse = function() {
+        $stubIsAttributeValidFalse = function () {
             return false;
         };
-        $stubIsAttributeValidTrue = function() {
+        $stubIsAttributeValidTrue = function () {
             return true;
         };
 
