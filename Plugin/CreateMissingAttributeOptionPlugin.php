@@ -6,7 +6,6 @@ use Magento\CatalogImportExport\Model\Import\Product;
 use Magento\CatalogImportExport\Model\Import\Product\Validator;
 use Magento\Eav\Api\Data\AttributeOptionInterfaceFactory;
 use Magento\Eav\Model\Config as EavConfig;
-use Migration\Exception;
 
 class CreateMissingAttributeOptionPlugin
 {
@@ -30,23 +29,22 @@ class CreateMissingAttributeOptionPlugin
         ProductAttributeOptionManagementInterface $attributeOptionManagementInterface,
         AttributeOptionInterfaceFactory $optionDataFactory,
         EavConfig $eavConfig
-    )
-    {
+    ) {
         $this->eavConfig = $eavConfig;
         $this->optionDataFactory = $optionDataFactory;
         $this->attributeOptionManagementInterface = $attributeOptionManagementInterface;
     }
 
-
     public function beforeIsAttributeValid(Validator $subject, $attrCode, array $attrParams, array $rowData)
     {
         if ($attrParams['type'] != "multiselect" && $attrParams['type'] != "select") {
-            return array($attrCode, $attrParams, $rowData);
+            return [$attrCode, $attrParams, $rowData];
         }
 
         $attribute = $this->eavConfig->getAttribute('catalog_product', $attrCode);
+        // phpcs:ignore
         if ($attribute->getSourceModel() != 'Magento\Eav\Model\Entity\Attribute\Source\Table') {
-            return array($attrCode, $attrParams, $rowData);
+            return [$attrCode, $attrParams, $rowData];
         }
 
         $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
@@ -58,15 +56,12 @@ class CreateMissingAttributeOptionPlugin
 
                 $attrParams['options'][$optionName] = $option->getValue();
                 // Delete Common Attributes Cache, for forcing reloading the Values
-                \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = array();
-
+                \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = [];
             }
         }
 
-        return array($attrCode, $attrParams, $rowData);
-
+        return [$attrCode, $attrParams, $rowData];
     }
-
 
     /**
      * Create a matching attribute option

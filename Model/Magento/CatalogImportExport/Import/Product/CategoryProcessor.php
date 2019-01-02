@@ -4,10 +4,8 @@
  */
 namespace FireGento\ExtendedImport\Model\Magento\CatalogImportExport\Import\Product;
 
-
 class CategoryProcessor extends \Magento\CatalogImportExport\Model\Import\Product\CategoryProcessor
 {
-
 
     /**
      * {@inheritdoc}
@@ -22,6 +20,4 @@ class CategoryProcessor extends \Magento\CatalogImportExport\Model\Import\Produc
         }
         return $categoryId;
     }
-
-
 }
