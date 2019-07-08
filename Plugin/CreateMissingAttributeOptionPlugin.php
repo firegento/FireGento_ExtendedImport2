@@ -6,6 +6,7 @@ use Magento\CatalogImportExport\Model\Import\Product;
 use Magento\CatalogImportExport\Model\Import\Product\Validator;
 use Magento\Eav\Api\Data\AttributeOptionInterfaceFactory;
 use Magento\Eav\Model\Config as EavConfig;
+use Magento\Eav\Model\Entity\Attribute\AbstractAttribute;
 
 class CreateMissingAttributeOptionPlugin
 {
@@ -43,28 +44,37 @@ class CreateMissingAttributeOptionPlugin
 
         $attribute = $this->eavConfig->getAttribute('catalog_product', $attrCode);
         // phpcs:ignore
-        if ($attribute->getSourceModel() != 'Magento\Eav\Model\Entity\Attribute\Source\Table') {
+        if (!$this->isAttributeApplicable($attribute)) {
             return [$attrCode, $attrParams, $rowData];
         }
 
         $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
+        $values = array_map('strtolower', $values);
+        $values = array_filter($values, function ($optionName) use ($attrParams) {
+            if (!strlen($optionName)) {
+                return false;
+            }
+
+            if (isset($attrParams['options'][$optionName])) {
+                return false;
+            }
+
+            return true;
+        });
 
         foreach ($values as $value) {
-            $optionName = strtolower($value);
-            if (!isset($attrParams['options'][$optionName]) && strlen($optionName)) {
-                $option = $this->createAttributeOption($attrCode, $value);
+            $option = $this->createAttributeOption($attrCode, $value);
 
-                $attrParams['options'][$optionName] = $option->getValue();
-                // Delete Common Attributes Cache, for forcing reloading the Values
-                \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = [];
-            }
+            $attrParams['options'][$optionName] = $option->getValue();
+            // Delete Common Attributes Cache, for forcing reloading the Values
+            \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = [];
         }
 
         return [$attrCode, $attrParams, $rowData];
     }
 
     /**
-     * Create a matching attribute option
+     * Create a matching attribute option.
      *
      * @param string $attributeCode Attribute the option should exist in
      * @param string $label Label to add
@@ -73,6 +83,7 @@ class CreateMissingAttributeOptionPlugin
     public function createAttributeOption($attributeCode, $label)
     {
         $option = $this->findAttributeOptionByLabel($attributeCode, $label);
+
         if (!$option) {
             $option = $this->optionDataFactory->create();
             $option->setLabel($label);
@@ -85,9 +96,11 @@ class CreateMissingAttributeOptionPlugin
             $this->eavConfig->clear();
             $option = $this->findAttributeOptionByLabel($attributeCode, $label);
         }
+
         if (!$option) {
             die('Could not find ' . $label . ' in ' . $attributeCode);
         }
+
         return $option;
     }
 
@@ -104,6 +117,20 @@ class CreateMissingAttributeOptionPlugin
                 return $attributeOptionInterface;
             }
         }
+
         return null;
+    }
+
+    /**
+     * Returns true if attribute is applicable for option generation.
+     *
+     * @param AbstractAttribute $attribute
+     * @return bool
+     */
+    public function isAttributeApplicable(AbstractAttribute $attribute)
+    {
+        $sourceModel = $attribute->getSourceModel();
+
+        return $sourceModel === null || $sourceModel === 'Magento\Eav\Model\Entity\Attribute\Source\Table';
     }
 }
