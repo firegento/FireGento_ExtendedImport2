@@ -54,8 +54,8 @@ class CreateMissingAttributeOptionPlugin
                 return false;
             }
 
-            $optionName = strtolower($optionName);
-            if (isset($attrParams['options'][$optionName])) {
+            $indexValue = strtolower($optionName);
+            if (isset($attrParams['options'][$indexValue])) {
                 return false;
             }
 
