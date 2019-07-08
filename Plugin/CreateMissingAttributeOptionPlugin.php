@@ -49,12 +49,12 @@ class CreateMissingAttributeOptionPlugin
         }
 
         $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
-        $values = array_map('strtolower', $values);
         $values = array_filter($values, function ($optionName) use ($attrParams) {
             if (!strlen($optionName)) {
                 return false;
             }
 
+            $optionName = strtolower($optionName);
             if (isset($attrParams['options'][$optionName])) {
                 return false;
             }
@@ -63,9 +63,10 @@ class CreateMissingAttributeOptionPlugin
         });
 
         foreach ($values as $value) {
+            $indexValue = strtolower($value);
             $option = $this->createAttributeOption($attrCode, $value);
 
-            $attrParams['options'][$optionName] = $option->getValue();
+            $attrParams['options'][$indexValue] = $option->getValue();
             // Delete Common Attributes Cache, for forcing reloading the Values
             \Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType::$commonAttributesCache = [];
         }
