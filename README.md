@@ -2,36 +2,36 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-FireGento ExtendedImport Extension
-=====================
+# FireGento ExtendedImport Extension
+
 Extended Import Features (ported from AvS_FastSimpleImport)
 
-Facts
------
+## Facts
+
 - version: 0.0.1
 - extension key: FireGento_ExtendedImport
 - [extension on GitHub](https://github.com/magento-hackathon/FireGento_ExtendedImport2)
 
-Description
------------
+## Description
+
 Adds missing features to Magento CSV import, to be used with FastSimpleImport
 
-Features
------------
+## Features
+
 1. Add missing product-attribute-options on the fly
 2. Allow using category-ids on product import instead of category-path
 
 
-Requirements
-------------
+## Requirements
+
 - None
 
-Compatibility
--------------
+## Compatibility
+
 - Magento >= 2.0
 
-Installation Instructions "Manual" Installation
----------------------------------------------
+## Installation Instructions "Manual" Installation
+
 1. create a directory `app/code/FireGento/ExtendedImport`
 2. extract all files of the module there
 3. enable the module with
@@ -39,24 +39,24 @@ Installation Instructions "Manual" Installation
         bin/magento module:enable FireGento/ExtendedImport
         bin/magento setup:upgrade
         
-Installation Instructions with Composer
----------------------------------------------
+## Installation Instructions with Composer
+
 
         composer config repositories.firegento_extendedimport2 vcs https://github.com/firegento/FireGento_ExtendedImport2
         composer require firegento/extendedimport dev-master
         bin/magento module:enable FireGento_ExtendedImport
         bin/magento setup:upgrade
 
-Uninstallation
---------------
+## Uninstallation
+
 1. remove the directory `app/code/FireGento/ExtendedImport`
 
-Support
--------
+## Support
+
 If you have any issues with this extension, open an issue on [GitHub](https://github.com/magento-hackathon/FireGento_ExtendedImport/issues).
 
-Contribution
-------------
+## Contribution
+
 Any contribution is highly appreciated. The best way to contribute code is to open a [pull request on GitHub](https://help.github.com/articles/using-pull-requests).
 
 ## Contributors ✨
@@ -88,23 +88,23 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-Tests
------
+## Tests
+
 Unit tests are integrated in the Magento unit test suite. To run them separately, simply call
 
     phpunit
     
 in the module directory (it must be installed in a Magento instance to use the bootstrap file)
 
-Developer
----------
+## Developer
+
 Fabian Schmengler
 [@fschmengler](https://twitter.com/fschmengler)
 
-Licence
--------
+## Licence
+
 [OSL - Open Software Licence 3.0](http://opensource.org/licenses/osl-3.0.php)
 
-Copyright
----------
+## Copyright
+
 (c) 2016 -2020 FireGento
