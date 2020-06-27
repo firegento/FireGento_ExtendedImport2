@@ -1,5 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 FireGento ExtendedImport Extension
@@ -75,6 +75,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://elgentos.nl/"><img src="https://avatars2.githubusercontent.com/u/431360?v=4" width="100px;" alt=""/><br /><sub><b>Peter Jaap Blaakmeer</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=peterjaap" title="Code">💻</a></td>
     <td align="center"><a href="https://www.webzap.eu/"><img src="https://avatars1.githubusercontent.com/u/563328?v=4" width="100px;" alt=""/><br /><sub><b>Lennart Schreiber</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=Kipperlenny" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/ulftietze"><img src="https://avatars2.githubusercontent.com/u/12051528?v=4" width="100px;" alt=""/><br /><sub><b>utietze</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=ulftietze" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/Dr-Head"><img src="https://avatars0.githubusercontent.com/u/3766584?v=4" width="100px;" alt=""/><br /><sub><b>Daniel Head</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=Dr-Head" title="Code">💻</a></td>
   </tr>
 </table>
 
