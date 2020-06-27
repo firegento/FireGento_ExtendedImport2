@@ -107,4 +107,4 @@ Licence
 
 Copyright
 ---------
-(c) 2016 FireGento
+(c) 2016 -2020 FireGento
