@@ -1,0 +1,96 @@
+{
+  "projectName": "FireGento_ExtendedImport2",
+  "projectOwner": "firegento",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "frostblogNet",
+      "name": "Jens Richter",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/19548641?v=4",
+      "profile": "https://frostblog.net/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "EliasKotlyar",
+      "name": "Elias Kotlyar",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/9529505?v=4",
+      "profile": "https://github.com/EliasKotlyar",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "schmengler",
+      "name": "Fabian Schmengler />",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/367320?v=4",
+      "profile": "https://www.schmengler-se.de/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tdgroot",
+      "name": "Timon de Groot",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/1165302?v=4",
+      "profile": "https://blog.timpack.org/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "peterjaap",
+      "name": "Peter Jaap Blaakmeer",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/431360?v=4",
+      "profile": "http://elgentos.nl/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Kipperlenny",
+      "name": "Lennart Schreiber",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/563328?v=4",
+      "profile": "https://www.webzap.eu/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ulftietze",
+      "name": "utietze",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/12051528?v=4",
+      "profile": "https://github.com/ulftietze",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Dr-Head",
+      "name": "Daniel Head",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/3766584?v=4",
+      "profile": "https://github.com/Dr-Head",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "kkrieger85",
+      "name": "Kevin Krieger",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/4435523?v=4",
+      "profile": "https://github.com/kkrieger85",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
