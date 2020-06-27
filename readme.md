@@ -4,7 +4,7 @@ Extended Import Features (ported from AvS_FastSimpleImport)
 
 Facts
 -----
-- version: 0.0.1
+- version: 1.0.0
 - extension key: FireGento_ExtendedImport
 - [extension on GitHub](https://github.com/magento-hackathon/FireGento_ExtendedImport2)
 
@@ -39,7 +39,7 @@ Installation Instructions with Composer
 ---------------------------------------------
 
         composer config repositories.firegento_extendedimport2 vcs https://github.com/firegento/FireGento_ExtendedImport2
-        composer require firegento/extendedimport dev-master
+        composer require firegento/extendedimport
         bin/magento module:enable FireGento_ExtendedImport
         bin/magento setup:upgrade
 
