@@ -1,5 +1,5 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 FireGento ExtendedImport Extension
@@ -71,6 +71,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://frostblog.net/"><img src="https://avatars3.githubusercontent.com/u/19548641?v=4" width="100px;" alt=""/><br /><sub><b>Jens Richter</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=frostblogNet" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/EliasKotlyar"><img src="https://avatars0.githubusercontent.com/u/9529505?v=4" width="100px;" alt=""/><br /><sub><b>Elias Kotlyar</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=EliasKotlyar" title="Code">💻</a></td>
     <td align="center"><a href="https://www.schmengler-se.de/"><img src="https://avatars1.githubusercontent.com/u/367320?v=4" width="100px;" alt=""/><br /><sub><b>Fabian Schmengler /></b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=schmengler" title="Code">💻</a></td>
+    <td align="center"><a href="https://blog.timpack.org/"><img src="https://avatars2.githubusercontent.com/u/1165302?v=4" width="100px;" alt=""/><br /><sub><b>Timon de Groot</b></sub></a><br /><a href="https://github.com/firegento/FireGento_ExtendedImport2/commits?author=tdgroot" title="Code">💻</a></td>
   </tr>
 </table>
 
