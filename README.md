@@ -36,7 +36,7 @@ Adds missing features to Magento CSV import, to be used with FastSimpleImport
 2. extract all files of the module there
 3. enable the module with
 
-        bin/magento module:enable FireGento/ExtendedImport
+        bin/magento module:enable FireGento_ExtendedImport
         bin/magento setup:upgrade
         
 ## Installation Instructions with Composer
