@@ -114,7 +114,7 @@ class CreateMissingAttributeOptionPlugin
     {
         $attributeOptionList = $this->attributeOptionManagementInterface->getItems($attributeCode);
         foreach ($attributeOptionList as $attributeOptionInterface) {
-            if (strcmp($attributeOptionInterface->getLabel(), $label) === 0) {
+            if (strcasecmp($attributeOptionInterface->getLabel(), $label) === 0) {
                 return $attributeOptionInterface;
             }
         }
