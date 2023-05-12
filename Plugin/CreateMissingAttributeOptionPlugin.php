@@ -48,7 +48,7 @@ class CreateMissingAttributeOptionPlugin
             return [$attrCode, $attrParams, $rowData];
         }
 
-        $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, $rowData[$attrCode]);
+        $values = explode(Product::PSEUDO_MULTI_LINE_SEPARATOR, (string)$rowData[$attrCode]);
         $values = array_filter($values, function ($optionName) use ($attrParams) {
             if (!strlen($optionName)) {
                 return false;
